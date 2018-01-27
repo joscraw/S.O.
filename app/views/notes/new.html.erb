@@ -1,5 +1,23 @@
 <h1>New Note</h1>
 
-<%= render 'form', note: @note %>
+<%= form_for @note, url: {action: "create"} do |f| %>
+    <%= f.label :title %>
+    <%= error_message_for(@note, :title) %>
+    <%= f.text_field :title %>
+    <%= f.label :type_of %>
+    <%= error_message_for(@note, :type_of) %>
+    <%= f.select(:type_of, options_for_select(Note::TYPE_OPTIONS)) %>
+    <%= f.label :description %>
+    <%= error_message_for(@note, :description) %>
+    <%= f.text_area :description %>
+    <%= f.label :deadline %>
+    <%= error_message_for(@note, :deadline) %>
+    <%= f.select :month, (1..12).to_a %>
+    <%= f.select :day, (1..31).to_a %>
+    <%= f.select :year, (Time.now.year..(Time.now.year + 20)).to_a %>
+
+    <%= f.submit "Create" %>
+<% end %>
 
 <%= link_to 'Back', notes_path %>
+

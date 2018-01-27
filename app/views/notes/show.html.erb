@@ -1,4 +1,26 @@
-<p id="notice"><%= notice %></p>
+<table>
+  <thead>
+  <tr>
+    <th>Title</th>
+    <th>Type</th>
+    <th>Description</th>
+    <th>Deadline</th>
+    <th>Created</th>
+    <th>Last Updated</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <tr>
+    <td><%= @note.title %></td>
+    <td><%= @note.type_format(@note.type_of) %></td>
+    <td><%= @note.description %></td>
+    <td><%= @note.deadline %></td>
+    <td><%= @note.created_at %></td>
+    <td><%= @note.updated_at %></td>
+  </tr>
+  </tbody>
+</table>
 
 <%= link_to 'Edit', edit_note_path(@note) %> |
 <%= link_to 'Back', notes_path %>

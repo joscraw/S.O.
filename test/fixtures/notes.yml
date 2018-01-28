@@ -2,12 +2,12 @@
 
 one:
   title: MyString
-  type: 
+  type_of: 1
   description: MyText
-  deadline: 2018-01-27
+  deadline: 2018-02-27
 
 two:
   title: MyString
-  type: 
+  type_of: 2
   description: MyText
-  deadline: 2018-01-27
+  deadline: 2018-02-27

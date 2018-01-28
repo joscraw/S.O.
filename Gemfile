@@ -44,6 +44,8 @@ group :development, :test do
   gem "rubocop", "~> 0.41.2", require: false
   gem 'ruby-debug-ide'
   gem 'debase'
+  gem 'minitest-reporters'
+  gem 'rails-controller-testing'
 end
 
 group :development do

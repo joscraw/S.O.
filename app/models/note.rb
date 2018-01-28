@@ -15,10 +15,12 @@ class Note < ApplicationRecord
   attr_accessor :month, :day, :year
   TYPE_OPTIONS = {'note' => 1, 'goal' => 2}
 
+
   validates :title, presence: true, length: {maximum: 40, too_long: "%{count} characters is the maximum allowed"}
   validates_inclusion_of :type_of, presence: true, :in => TYPE_OPTIONS.values, :message => 'choose from the available options'
   validates :description, length: {maximum: 1000, too_long: "%{count} characters is the maximum allowed"}
   validate :validate_deadline
+
 
   # Accepts an integer value and returns
   # a string value from the TYPE_OPTIONS hash
@@ -28,6 +30,7 @@ class Note < ApplicationRecord
   def type_format(value)
     TYPE_OPTIONS.key(value)
   end
+
 
   # Accepts a date object and returns a nicely formatted string
   #
@@ -52,11 +55,16 @@ class Note < ApplicationRecord
     end
   end
 
+
   # validates the deadline
   #
   # @return [Array]
   def validate_deadline
-    errors.add(:deadline, "Deadline date is invalid.") unless convert_deadline
+    # only validate the date if the type of note is a goal
+    if self.type_of === 2
+      errors.add(:deadline, "Deadline date is invalid.") unless convert_deadline
+    end
   end
+
 
 end

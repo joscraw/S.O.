@@ -1,24 +1,42 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This project is just using sqlite3 so there should be 
+zero database configuration needed to get setup and running
 
-Things you may want to cover:
 
-* Ruby version
+SETUP WITHOUT VAGRANT 
+---------------
 
-* System dependencies
+You will need a minimum ruby version of 2.4.1 installed on your system.
 
-* Configuration
+1. $ gem install bundler (make sure bundler is installed)
+2. $ git clone https://github.com/joscraw/S.O..git
+3. $ cd $PROJECT_ROOT  
+4. $ bundle install
+5. $ bin/rails s
 
-* Database creation
 
-* Database initialization
+Go ahead and visit http://localhost:3000/ in your browser!
 
-* How to run the test suite
 
-* Services (job queues, cache servers, search engines, etc.)
 
-* Deployment instructions
+SETUP WITH VAGRANT
+---------------
+1. Head over to Vagrant and download and install the latest version for your system
+https://www.vagrantup.com/downloads.html
+2. Head over to virtual box and download and install the latest version for your sytem
+https://www.virtualbox.org/wiki/Downloads
+3. $ git clone https://github.com/joscraw/S.O..git
+4. $ cd $PROJECT_ROOT 
+5. $ vagrant up (This can take 5-10 minutes for your VM to be setup. Once this is done you can continue onto the next steps)
+6. $ vagrant ssh
+7. $ cd /var/www
+8. $ bundle exec rails server -e development -b 0.0.0.0 -p 3000  (Run this command to start the server up)
 
-* ...
+Go ahead and visit http://192.168.56.108:3000/ in your browser!
+
+RUN TEST SUITE
+---------------
+
+$ cd $PROJECT_ROOT  
+$ rails test

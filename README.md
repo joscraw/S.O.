@@ -34,7 +34,7 @@ https://www.virtualbox.org/wiki/Downloads
 7. $ cd /var/www
 8. $ bundle install
 9. $ rake db:migrate
-10.. $ bundle exec rails server -e development -b 0.0.0.0 -p 3000  (Run this command to start the server up)
+10. $ bundle exec rails server -e development -b 0.0.0.0 -p 3000  (Run this command to start the server up)
 
 Go ahead and visit http://192.168.56.108:3000/ in your browser!
 

@@ -13,7 +13,8 @@ You will need a minimum ruby version of 2.4.1 installed on your system.
 2. $ git clone https://github.com/joscraw/S.O..git
 3. $ cd $PROJECT_ROOT  
 4. $ bundle install
-5. $ bin/rails s
+5. $ rake db:migrate
+6. $ bin/rails s
 
 
 Go ahead and visit http://localhost:3000/ in your browser!
@@ -31,7 +32,9 @@ https://www.virtualbox.org/wiki/Downloads
 5. $ vagrant up (This can take 5-10 minutes for your VM to be setup. Once this is done you can continue onto the next steps)
 6. $ vagrant ssh
 7. $ cd /var/www
-8. $ bundle exec rails server -e development -b 0.0.0.0 -p 3000  (Run this command to start the server up)
+8. $ bundle install
+9. $ rake db:migrate
+10.. $ bundle exec rails server -e development -b 0.0.0.0 -p 3000  (Run this command to start the server up)
 
 Go ahead and visit http://192.168.56.108:3000/ in your browser!
 

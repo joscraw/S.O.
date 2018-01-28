@@ -41,7 +41,7 @@ group :development, :test do
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
   gem 'pry'
-  gem "rubocop", "~> 0.41.2", require: false
+  gem "rubocop", "~> 0.52.1", require: false
   gem 'ruby-debug-ide'
   gem 'debase'
   gem 'minitest-reporters'

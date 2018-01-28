@@ -1,11 +1,11 @@
-<p id="notice"><%= notice %></p>
+<h1><%= content_for(:title, "All Notes") %></h1>
 
-<h1>Notes</h1>
-
-<table>
+<table class="table">
   <thead>
   <tr>
-    <th colspan="3"></th>
+    <th>Title</th>
+    <th>Type</th>
+    <th>Deadline (Only for goals)</th>
   </tr>
   </thead>
 
@@ -14,10 +14,16 @@
       <tr>
         <td><%= note.title %></td>
         <td><%= note.type_format(note.type_of) %></td>
-        <td><%= note.deadline %></td>
-        <td><%= link_to 'Show', note %></td>
-        <td><%= link_to 'Edit', edit_note_path(note) %></td>
-        <td><%= link_to 'Destroy', note, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td>
+          <% if note.type_of == 2 %>
+              <%= note.deadline %>
+          <% else %>
+              N/A
+          <% end %>
+        </td>
+        <td><%= link_to 'Show', note, class: "btn btn-info" %></td>
+        <td><%= link_to 'Edit', edit_note_path(note), class: "btn btn-success" %></td>
+        <td><%= link_to 'Destroy', note, method: :delete, data: {confirm: 'Are you sure?'}, class: "btn btn-danger" %></td>
       </tr>
   <% end %>
   </tbody>
@@ -25,4 +31,4 @@
 
 <br>
 
-<%= link_to 'New Note', new_note_path %>
+<%= link_to 'New Note', new_note_path, class: "btn btn-primary" %>

@@ -13,6 +13,11 @@ class Note < ApplicationRecord
   end
 
 
+  def format_date(date_obj)
+    date_obj.strftime("%m/%d/%Y %I:%M %p")
+  end
+
+
   private
 
   def convert_deadline
@@ -26,4 +31,5 @@ class Note < ApplicationRecord
   def validate_deadline
     errors.add(:deadline, "Deadline date is invalid.") unless convert_deadline
   end
+
 end

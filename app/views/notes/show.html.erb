@@ -1,4 +1,6 @@
-<table>
+<h1><%= content_for(:title, "Note: " + @note.title) %></h1>
+
+<table class="table">
   <thead>
   <tr>
     <th>Title</th>
@@ -16,11 +18,11 @@
     <td><%= @note.type_format(@note.type_of) %></td>
     <td><%= @note.description %></td>
     <td><%= @note.deadline %></td>
-    <td><%= @note.created_at %></td>
-    <td><%= @note.updated_at %></td>
+    <td><%= @note.format_date(@note.created_at) %></td>
+    <td><%= @note.format_date(@note.updated_at) %></td>
   </tr>
   </tbody>
 </table>
 
-<%= link_to 'Edit', edit_note_path(@note) %> |
-<%= link_to 'Back', notes_path %>
+<%= link_to 'Edit', edit_note_path(@note), class: "btn btn-success" %> |
+<%= link_to 'Back', notes_path, class: "btn btn-warning" %>

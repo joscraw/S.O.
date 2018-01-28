@@ -1,25 +1,48 @@
-<h1>Editing Note</h1>
-
-<h1>New Note</h1>
+<h1><%= content_for(:title, "Edit Note") %></h1>
 
 <%= form_for @note, url: {action: "update"} do |f| %>
-    <%= f.label :title %>
-    <%= error_message_for(@note, :title) %>
-    <%= f.text_field :title %>
-    <%= f.label :type_of %>
-    <%= error_message_for(@note, :type_of) %>
-    <%= f.select(:type_of, options_for_select(Note::TYPE_OPTIONS)) %>
-    <%= f.label :description %>
-    <%= error_message_for(@note, :description) %>
-    <%= f.text_area :description %>
-    <%= f.label :deadline %>
-    <%= error_message_for(@note, :deadline) %>
-    <%= f.select :month, (1..12).to_a, selected: @note.deadline.month %>
-    <%= f.select :day, (1..31).to_a, selected: @note.deadline.day %>
-    <%= f.select :year, (Time.now.year..(Time.now.year + 20)).to_a, selected: @note.deadline.year %>
+    <div class="form-group">
+      <%= f.label :title %>
+      <%= error_message_for(@note, :title) %>
+      <%= f.text_field :title, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :type_of %>
+      <%= error_message_for(@note, :type_of) %>
+      <%= f.select(:type_of, Note::TYPE_OPTIONS.to_a, {selected: @note.type_of}, {class: "js-type form-control"}) %>
+    </div>
+    <div class="form-group">
+      <%= f.label :description %>
+      <%= error_message_for(@note, :description) %>
+      <%= f.text_area :description, class: "form-control" %>
+    </div>
 
-    <%= f.submit "Update" %>
+    <div class="js-deadline form-group hide clearfix">
+      <%= f.label :deadline %>
+      <div class="form-row clearfix">
+        <%= error_message_for(@note, :deadline) %>
+        <div class="col-md-4">
+          <%= f.label :month %>
+          <%= f.select(:month, (1..12).to_a, {selected: @note.deadline.month}, {class: "form-control"}) %>
+        </div>
+        <div class="col-md-4">
+          <%= f.label :day %>
+          <%= f.select(:day, (1..31).to_a, {selected: @note.deadline.day}, {class: "form-control"}) %>
+        </div>
+        <div class="col-md-4">
+          <%= f.label :year %>
+          <%= f.select(:year, (Time.now.year..(Time.now.year + 20)).to_a, {selected: @note.deadline.year}, {class: "form-control"}) %>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="form-group">
+      <%= f.submit "Update", class: "btn btn-primary form-control" %>
+    </div>
+
+
 <% end %>
 
-<%= link_to 'Show', @note %> |
-<%= link_to 'Back', notes_path %>
+<%= link_to 'Show', @note, class: "btn btn-info" %> |
+<%= link_to 'Back', notes_path, class: "btn btn-warning" %>

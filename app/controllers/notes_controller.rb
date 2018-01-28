@@ -1,28 +1,38 @@
+# Note controller performs basic CRUD actions on
+# a Single Note or collection of Note Objects
+#
+# @author Josh Crawmer
+#
 class NotesController < ApplicationController
   before_action :set_note, only: [:show, :edit, :update, :destroy]
 
+  # Displays all notes with most recently created at the top.
+  # Selects only the values needed to enhance query performance
   # GET /notes
-  # GET /notes.json
   def index
     @notes = Note.select(:id, :title, :type_of, :deadline).order('created_at DESC')
   end
 
+  # Shows note information by passing in a given note id
   # GET /notes/1
-  # GET /notes/1.json
   def show
   end
 
+  # Renders form for creating a new note
   # GET /notes/new
   def new
     @note = Note.new
   end
 
+  # displays form for editing an already existing note
   # GET /notes/1/edit
   def edit
   end
 
+  # handles creating a new note. Performs redirect to main notes
+  # page on success.
+  #
   # POST /notes
-  # POST /notes.json
   def create
 
     @note = Note.new(note_params)
@@ -33,16 +43,16 @@ class NotesController < ApplicationController
           flash[:success] = 'Note was successfully created.'
           redirect_to :notes
         }
-        format.json { render :show, status: :created, location: @note }
       else
-        format.html { render :new }
-        format.json { render json: @note.errors, status: :unprocessable_entity }
+        format.html {render :new}
       end
     end
   end
 
+  # Handles updating an already existing note. Performs redirect to notes
+  # page on success.
+  #
   # PATCH/PUT /notes/1
-  # PATCH/PUT /notes/1.json
   def update
     respond_to do |format|
       if @note.update(note_params)
@@ -50,16 +60,15 @@ class NotesController < ApplicationController
           flash[:success] = 'Note was successfully updated.'
           redirect_to :notes
         }
-        format.json { render :show, status: :ok, location: @note }
       else
-        format.html { render :edit }
-        format.json { render json: @note.errors, status: :unprocessable_entity }
+        format.html {render :edit}
       end
     end
   end
 
+  # Deletes a given note.
+  #
   # DELETE /notes/1
-  # DELETE /notes/1.json
   def destroy
     @note.destroy
     respond_to do |format|
@@ -67,7 +76,6 @@ class NotesController < ApplicationController
         flash[:success] = 'Note was successfully deleted'
         redirect_to :notes
       }
-      format.json { head :no_content }
     end
   end
 
@@ -77,7 +85,7 @@ class NotesController < ApplicationController
     @note = Note.find(params[:id])
   end
 
-  # Never trust parameters from the scary internet, only allow the white list through.
+  # Set up whitelisted parameters that are allowed
   def note_params
     params.require(:note).permit(:title, :type_of, :description, :month, :day, :year)
   end

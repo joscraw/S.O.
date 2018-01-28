@@ -1,6 +1,6 @@
 # README
 
-This project is just using sqlite3 so there should be 
+This project is using sqlite3 so there should be 
 zero database configuration needed to get setup and running
 
 
